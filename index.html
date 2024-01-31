@@ -58,9 +58,7 @@
             const urlParams = new URLSearchParams(window.location.search);
 
 
-            console.log("Serial:", serial);
-            console.log("timestamp:", timestamp);
-            console.log("Signature:", signature);
+            
 
             // Extract query parameters 
             const serial = urlParams.get('serial');
@@ -71,6 +69,10 @@
             const expiry = urlParams.get('expiry');
             const destination = urlParams.get('destination');
             const qr_status = urlParams.get('status');
+
+            console.log("Serial:", serial);
+            console.log("timestamp:", timestamp);
+            console.log("Signature:", signature);
 
             if (qr_status){
                 document.getElementById('emessage').style.display = "block";

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        .card {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #333333;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Brandwise API</h1>
+    <div class="card product-details" style="display: none;" id="product">
+        <h2>Product Details</h2>
+        <ul>
+            <li><strong>Serial Number:</strong> <span id="sr_number"></span></li>
+            <li><strong>manufacturing_unit:</strong> <span id="manufacturing_unit"></span></li>
+            <li><strong>Manufacturing Date:</strong> <span id="manufacturing_date"></span></li>
+            <li><strong>Expiry Date:</strong> <span id="expiry"></span></li>
+            <li><strong>Destination Market:</strong> <span id="destination"></span></li>
+        </ul>
+    </div>
+
+   
+    <div class="card" style="display: none;" id="emessage">
+        <p style="color: red; text-align: center;"> <span id="response"></span></p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // Get the current URL
+            const currentUrl = window.location.href;
+
+            // Create a URLSearchParams object to handle query parameters
+            const urlParams = new URLSearchParams(window.location.search);
+
+
+            console.log("Serial:", serial);
+            console.log("timestamp:", timestamp);
+            console.log("Signature:", signature);
+
+            // Extract query parameters 
+            const serial = urlParams.get('serial');
+            const timestamp = urlParams.get('timestamp');          
+            const signature = urlParams.get('signature');
+            const manufacturing_date = urlParams.get('m_date');
+            const manufacturing_unit = urlParams.get('m_unit');
+            const expiry = urlParams.get('expiry');
+            const destination = urlParams.get('destination');
+            const qr_status = urlParams.get('status');
+
+            if (qr_status){
+                document.getElementById('emessage').style.display = "block";
+                document.getElementById('response').innerText = 'The product has not been activated.'
+            }
+            else{
+                document.getElementById('product').style.display = "block";
+                document.getElementById('sr_number').innerText = serial || 'N/A';
+                document.getElementById('manufacturing_unit').innerText = manufacturing_unit || 'N/A';
+                document.getElementById('manufacturing_date').innerText = manufacturing_date || 'N/A';
+                document.getElementById('expiry').innerText = expiry || 'N/A';
+                document.getElementById('destination').innerText = destination || 'N/A';
+            }          
+        });
+    </script>
+
+</body>
+</html>

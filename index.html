@@ -75,10 +75,12 @@
             console.log("Signature:", signature);
 
             if (qr_status){
+                console.log("Serial34:", serial);
                 document.getElementById('emessage').style.display = "block";
                 document.getElementById('response').innerText = 'The product has not been activated.'
             }
             else{
+                console.log("Serialds:", serial);
                 document.getElementById('product').style.display = "block";
                 document.getElementById('sr_number').innerText = serial || 'N/A';
                 document.getElementById('manufacturing_unit').innerText = manufacturing_unit || 'N/A';
